@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'django.contrib.humanize',
+     'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     
 ]
 
@@ -53,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'MotoBro.urls'
@@ -125,6 +130,24 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'MotoBro/static'),
 ]  
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': ['email'],
+    },
+    'google': {
+        'SCOPE': ['profile', 'email'],
+    },
+}
+
+LOGIN_REDIRECT_URL = '/'  
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_REDIRECT_URL = '/profile/'
 
 #media files (user-uploaded files)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

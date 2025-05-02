@@ -4,7 +4,6 @@
 {% block content %}
 {% load static %}
 {% load socialaccount %}
-{% providers_media_js %}
 
 <div class="sub-banner overview-bgi">
     <div class="container breadcrumb-area">
@@ -17,7 +16,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Contact section start -->
 <div class="contact-section">
@@ -33,7 +31,7 @@
                     <h3>Sign into your account</h3>
                     {% include 'includes/messages.html' %}
                     <form action="{% url 'login' %}" method="POST">
-                      {% csrf_token %}
+                        {% csrf_token %}
                         <div class="form-group form-box">
                             <input type="text" name="username" class="input-text" placeholder="Username" required>
                             <i class="flaticon-mail"></i>
@@ -50,7 +48,7 @@
                         </div>
                         <div class="clearfix"></div>
                         <ul class="social-list">
-                            <li><a href="{% provider_login_url 'facebook' method='js_sdk' %}" class="facebook-bg"><i class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></li>
+                            <li><a href="{% provider_login_url 'facebook' %}" class="facebook-bg"><i class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></li>
                             <li><a href="{% provider_login_url 'google' %}" class="google-bg"><i class="fa fa-google google-i"></i><span>Google</span></a></li>
                         </ul>
                     </form>
